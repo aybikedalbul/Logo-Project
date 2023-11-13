@@ -1,0 +1,28 @@
+image: logo-project:latest
+
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+    script:
+     - npm install
+    - npm run build
+    - echo "İnşa aşaması çalışıyor"
+    - docker build -t logo-project:latest .
+
+test:
+  script:
+      - echo "Test aşaması çalışıyor"
+
+    - docker run -it logo-project:latest npm test
+
+deploy:
+  script:
+      - echo "Yayınlama aşaması çalışıyor"
+    - docker push logo-project:latest
+
+    
+
+    
